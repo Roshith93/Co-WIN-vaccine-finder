@@ -1,8 +1,10 @@
-
+import { NavBar } from './components/NavBar'
 function App() {
   return (
-    <h3>CoWin Vaccine</h3>
-  );
+    <>
+      <NavBar />
+    </>
+  )
 }
 
-export default App;
+export default App
