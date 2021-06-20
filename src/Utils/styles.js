@@ -12,4 +12,18 @@ export const useStyles = makeStyles(({
     textAlign: 'center',
     fontWeight: 'bolder'
   },
+  homeContainer: {
+   margin: 5,
+   padding:5,
+   // display: 'flex',
+   // alignItems:'center',
+   // justifyContent:'center'
+   display:'grid',
+   placeItems:'center'
+ 
+  },
+  paperRoot: {
+   padding: 10,
+  }
 }))
+

@@ -4,12 +4,11 @@ import Toolbar from '@material-ui/core/Toolbar'
 import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/core/Menu'
-import Button from '@material-ui/core/Button'
 
 import { useStyles } from '../Utils/styles'
 import {CowinContext} from '../Context/CowinContext'
 
-export const NavBar = () => {
+export const NavBar = ({title}) => {
   const classes  = useStyles()
   const values = useContext(CowinContext)
   console.log(values)
@@ -26,7 +25,7 @@ export const NavBar = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant='h4' className={classes.title}>
-            Co-WIN Vaccine Finder
+            {title}
           </Typography>
         </Toolbar>
       </AppBar>
