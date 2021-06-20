@@ -1,4 +1,5 @@
-import { NavBar } from './components/NavBar'
+import { NavBar } from './Components/NavBar'
+
 function App() {
   return (
     <>
