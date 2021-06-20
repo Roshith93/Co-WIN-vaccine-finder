@@ -21,7 +21,7 @@ export const NavBar = () => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant='h6' className={classes.title}>
+          <Typography variant='h4' className={classes.title}>
             Co-WIN Vaccine Finder
           </Typography>
         </Toolbar>

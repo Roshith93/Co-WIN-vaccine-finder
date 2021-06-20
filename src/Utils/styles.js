@@ -9,5 +9,7 @@ export const useStyles = makeStyles(({
   },
   title: {
     flexGrow: 1,
+    textAlign: 'center',
+    fontWeight: 'bolder'
   },
 }))
