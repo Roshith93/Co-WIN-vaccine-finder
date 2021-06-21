@@ -143,14 +143,6 @@ export const SearchByPincode = () => {
                     labelPlacement='end'
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value='allowExtraEmails' color='primary' />
-                    }
-                    label='I want to receive inspiration, marketing promotions and updates via email.'
-                  />
-                </Grid>
               </Grid>
             </CardContent>
             <CardActions>
@@ -163,7 +155,7 @@ export const SearchByPincode = () => {
                 color='primary'
                 fullWidth
               >
-                {isSubmitting ? 'Searching....' : 'Search'}
+                {isSubmitting ? 'Checking Availability....' : 'Check Availability'}
               </Button>
             </CardActions>
           </Card>
