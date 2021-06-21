@@ -10,9 +10,11 @@ import TextField from '@material-ui/core/TextField'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Checkbox from '@material-ui/core/Checkbox'
 import Link from '@material-ui/core/Link'
+import Radio from '@material-ui/core/Radio'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
 
+import { Heading } from '../Components/Heading'
 import { getFormattedDate } from '../Utils/data'
 
 const initialValues = {
@@ -21,8 +23,8 @@ const initialValues = {
 
 const validationSchema = Yup.object({
   pincode: Yup.string()
-    .required('Pincode is required').matches(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/,'Not a valid pincode')
-
+    .required('Pincode is required')
+    .matches(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/, 'Not a valid pincode'),
 })
 
 const useStyles = makeStyles({
@@ -43,8 +45,12 @@ const useStyles = makeStyles({
 })
 
 export const SearchByPincode = () => {
+  const [selectedValue, setSelectedValue] = React.useState('Dose1')
+
+  const handleRadioChange = (event) => {
+    setSelectedValue(event.target.value)
+  }
   const classes = useStyles()
-  const bull = <span className={classes.bullet}>•</span>
   const onSubmit = (values, actions) => {
     let finalData = {
       ...values,
@@ -79,19 +85,64 @@ export const SearchByPincode = () => {
                     required
                     fullWidth
                     id='Pincode'
-                    label='PinCode'
+                    label='Pincode'
                     autoFocus
                     type='number'
                     error={touched.pincode && Boolean(errors.pincode)}
                     helperText={touched.pincode && errors.pincode}
                     as={TextField}
                     minlength='6'
-                    maxlength="6"
+                    maxlength='6'
                   />
                 </Grid>
 
-                <Grid item xs={12}></Grid>
-                <Grid item xs={12}></Grid>
+                <Grid item xs={12}>
+                  <Heading title='Age Group' />
+
+                  <FormControlLabel
+                    control={
+                      <Checkbox value='allowExtraEmails' color='primary' />
+                    }
+                    label='18-44'
+                  />
+                  <FormControlLabel
+                    style={{ marginLeft: '10px' }}
+                    control={
+                      <Checkbox value='allowExtraEmails' color='primary' />
+                    }
+                    label='45 above'
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <Heading title='Dose Type' />
+                  <FormControlLabel
+                    value='Dose1'
+                    control={
+                      <Radio
+                        color='primary'
+                        name='dosage'
+                        onChange={handleRadioChange}
+                        checked={selectedValue === 'Dose1'}
+                      />
+                    }
+                    label='Dose 1'
+                    labelPlacement='end'
+                  />
+                  <FormControlLabel
+                    style={{ marginLeft: '10px' }}
+                    value='Dose2'
+                    control={
+                      <Radio
+                        color='primary'
+                        name='dosage'
+                        onChange={handleRadioChange}
+                        checked={selectedValue === 'Dose2'}
+                      />
+                    }
+                    label='Dose 2'
+                    labelPlacement='end'
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <FormControlLabel
                     control={
@@ -112,7 +163,7 @@ export const SearchByPincode = () => {
                 color='primary'
                 fullWidth
               >
-                Search
+                {isSubmitting ? 'Searching....' : 'Search'}
               </Button>
             </CardActions>
           </Card>
