@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper'
 
 import { Heading } from '../components/Heading'
 import SearchTabs  from './SearchTabs'
-import { useStyles } from '../Utils/styles'
+import { useStyles } from '../utils/styles'
 
 export const VaccineFinder = () => {
   const classes = useStyles()

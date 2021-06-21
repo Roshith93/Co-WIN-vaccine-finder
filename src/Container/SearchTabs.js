@@ -8,7 +8,7 @@ import Tab from '@material-ui/core/Tab'
 import { a11yProps } from '../components/SearchTabs/AllYProp'
 import { TabPanel } from '../components/SearchTabs/TabPanel'
 import { SearchByPincode } from './SearchByPincode'
-import { useStyles } from '../Utils/styles'
+import { useStyles } from '../utils/styles'
 
 export default function FullWidthTabs() {
   const classes = useStyles()
