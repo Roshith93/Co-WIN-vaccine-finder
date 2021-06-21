@@ -1,5 +1,5 @@
-import { NavBar } from './Components/NavBar'
-import { VaccineFinder } from './Container/VaccineFinder'
+import { NavBar } from './components/NavBar'
+import { VaccineFinder } from './container/VaccineFinder'
 
 function App() {
   return (

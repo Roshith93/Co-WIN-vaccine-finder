@@ -28,6 +28,17 @@ export const useStyles = makeStyles(theme => ({
   searchTabRoot: {
    backgroundColor: theme.palette.background.paper,
    width: '100%',
+ },
+ cardRoot:{
+  minWidth: 275,
+ },
+ form: {
+  width: '100%', // Fix IE 11 issue.
+  marginTop: theme.spacing(3),
+},
+ subButton: {
+  fontSize: 20,
+  fontWeight: 'bolder'
  }
 }))
 

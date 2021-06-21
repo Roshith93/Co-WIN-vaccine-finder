@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/core/Menu'
 
 import { useStyles } from '../Utils/styles'
-import {CowinContext} from '../Context/CowinContext'
+import {CowinContext} from '../context/CowinContext'
 
 export const NavBar = ({title}) => {
   const classes  = useStyles()
