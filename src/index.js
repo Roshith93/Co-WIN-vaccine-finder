@@ -4,7 +4,7 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-import { CowinProvider } from './context/CowinContext'
+import { CowinProvider } from './Context/CowinContext'
 
 ReactDOM.render(
   <React.StrictMode>
