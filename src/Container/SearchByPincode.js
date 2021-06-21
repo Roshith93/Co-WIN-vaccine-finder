@@ -12,8 +12,8 @@ import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 
 import { Heading } from '../components/Heading'
-// import { getFormattedDate } from '../Utils/data'
-import { useStyles } from '../Utils/styles'
+import { getFormattedDate } from '../utils/data'
+import { useStyles } from '../utils/styles'
 
 const initialValues = {
   pincode: '',
@@ -34,10 +34,10 @@ export const SearchByPincode = () => {
   const classes = useStyles()
 
   const onSubmit = (values, actions) => {
-    // let finalData = {
-    //   ...values,
-    //   date: new Date(),
-    // }
+    let finalData = {
+      ...values,
+      date: getFormattedDate(new Date()),
+    }
   }
   return (
     <Formik
@@ -131,7 +131,7 @@ export const SearchByPincode = () => {
               <Button
                 // size='small'
                 type='submit'
-                style={{ fontSize: '18px', fontWeight:'bolder' }}
+                style={{ fontSize: '18px', fontWeight: 'bolder' }}
                 disabled={isSubmitting}
                 variant='contained'
                 color='primary'
