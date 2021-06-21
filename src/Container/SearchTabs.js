@@ -5,8 +5,9 @@ import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
-import { a11yProps } from './SearchTabs/AllYProp'
-import { TabPanel } from './SearchTabs/TabPanel'
+import { a11yProps } from '../Components/SearchTabs/AllYProp'
+import { TabPanel } from '../Components/SearchTabs/TabPanel'
+import { SearchByPincode } from './SearchByPincode'
 import { useStyles } from '../Utils/styles'
 
 export default function FullWidthTabs() {
@@ -43,7 +44,7 @@ export default function FullWidthTabs() {
         onChangeIndex={handleChangeIndex}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          Search by Pin
+          <SearchByPincode />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           Search by district
