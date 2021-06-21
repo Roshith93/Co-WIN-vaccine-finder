@@ -1,13 +1,13 @@
-import { NavBar } from './Components/NavBar'
-import { VaccineFinder } from './Container/VaccineFinder'
+import { NavBar } from "./components/NavBar";
+import { VaccineFinder } from "./container/VaccineFinder";
 
 function App() {
   return (
     <>
-      <NavBar title="Co-WIN Vaccine Finder"/>
+      <NavBar title="Co-WIN Vaccine Finder" />
       <VaccineFinder />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
