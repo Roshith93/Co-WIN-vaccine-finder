@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(({
+export const useStyles = makeStyles(theme => ({
   navRoot: {
     flexGrow: 1,
   },
@@ -24,6 +24,10 @@ export const useStyles = makeStyles(({
   },
   paperRoot: {
    padding: 10,
-  }
+  },
+  searchTabRoot: {
+   backgroundColor: theme.palette.background.paper,
+   width: '100%',
+ }
 }))
 
