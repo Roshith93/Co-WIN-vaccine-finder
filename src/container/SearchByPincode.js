@@ -34,10 +34,10 @@ export const SearchByPincode = () => {
   const classes = useStyles();
 
   const onSubmit = (values, actions) => {
-    let finalData = {
-      ...values,
-      date: getFormattedDate(new Date())
-    };
+    // let finalData = {
+    //   ...values,
+    //   date: getFormattedDate(new Date())
+    // };
   };
   return (
     <Formik
