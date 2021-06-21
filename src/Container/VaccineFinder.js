@@ -2,7 +2,7 @@ import Container from '@material-ui/core/Container'
 import Paper from '@material-ui/core/Paper'
 
 import { Heading } from '../Components/Heading'
-import SearchTabs  from '../Components/SearchTabs'
+import SearchTabs  from './SearchTabs'
 import { useStyles } from '../Utils/styles'
 
 export const VaccineFinder = () => {
