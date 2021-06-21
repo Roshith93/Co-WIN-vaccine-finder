@@ -11,9 +11,9 @@ import Radio from '@material-ui/core/Radio'
 import { Formik, Field, Form } from 'formik'
 import * as Yup from 'yup'
 
-import { Heading } from '../components/Heading'
-import { getFormattedDate } from '../utils/data'
-import { useStyles } from '../utils/styles'
+import { Heading } from '../Components/Heading'
+import { getFormattedDate } from '../Utils/data'
+import { useStyles } from '../Utils/styles'
 
 const initialValues = {
   pincode: '',

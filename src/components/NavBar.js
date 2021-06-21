@@ -5,7 +5,7 @@ import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/core/Menu'
 
-import { useStyles } from '../utils/styles'
+import { useStyles } from '../Utils/styles'
 import { CowinContext } from '../context/CowinContext'
 
 export const NavBar = ({ title }) => {

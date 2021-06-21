@@ -5,10 +5,10 @@ import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
 
-import { a11yProps } from '../components/SearchTabs/AllYProp'
-import { TabPanel } from '../components/SearchTabs/TabPanel'
+import { a11yProps } from '../Components/SearchTabs/AllYProp'
+import { TabPanel } from '../Components/SearchTabs/TabPanel'
 import { SearchByPincode } from './SearchByPincode'
-import { useStyles } from '../utils/styles'
+import { useStyles } from '../Utils/styles'
 
 export default function FullWidthTabs() {
   const classes = useStyles()
