@@ -24,7 +24,16 @@ export const CowinProvider = ({ children }) => {
   useEffect(() => console.log('Hello'), [])
   return (
     <CowinContext.Provider
-      value={{ dosageType, setDosageType, ageGroup, setAgeGroup }}
+      value={{
+        dosageType,
+        setDosageType,
+        ageGroup,
+        setAgeGroup,
+        states,
+        setStates,
+        districts,
+        setDistricts,
+      }}
     >
       {children}
     </CowinContext.Provider>
