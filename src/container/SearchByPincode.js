@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Radio from "@material-ui/core/Radio";
+import Icon from '@material-ui/core/Icon';
 import { Formik, Field, Form } from "formik";
 import * as Yup from "yup";
 
@@ -131,12 +132,13 @@ export const SearchByPincode = () => {
               <Button
                 // size='small'
                 type="submit"
-                style={{ fontSize: "18px", fontWeight: "bolder" }}
+                // style={{ fontSize: "18px", fontWeight: "bolder" }}
                 disabled={isSubmitting}
                 variant="contained"
                 color="primary"
-                fullWidth
+                // fullWidth
                 className={classes.subButton}
+                endIcon={<Icon>send</Icon>}
               >
                 {isSubmitting
                   ? "Checking Availability...."
