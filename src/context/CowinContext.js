@@ -1,6 +1,8 @@
 import { createContext, useState, useEffect } from 'react'
 
 export const CowinContext = createContext()
+console.log(process.env.NODE_ENV)
+console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
 //   type: 'district',
 //   pincode: '110001',
@@ -15,6 +17,8 @@ export const CowinContext = createContext()
 //   },
 // }
 export const CowinProvider = ({ children }) => {
+  const [states, setStates] = useState([])
+  const [districts, setDistricts] = useState([])
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   useEffect(() => console.log('Hello'), [])
