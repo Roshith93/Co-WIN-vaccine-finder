@@ -13,13 +13,13 @@ import { OptionalSection } from './OptionalSection'
 import { useStyles } from '../utils/styles'
 
 const initialValues = {
-  pincode: '',
+  state: '',
+  district: '',
 }
 
 const validationSchema = Yup.object({
-  pincode: Yup.string()
-    .required('Pincode is required')
-    .matches(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/, 'Not a valid pincode'),
+  state: Yup.string().required('Please select the state'),
+  district: Yup.string().required('Please select the district'),
 })
 const currencies = [
   {
@@ -40,18 +40,7 @@ const currencies = [
   },
 ]
 export const SearchByDistricts = () => {
-  const [district, setDistrict] = React.useState('EUR')
-  const [state, setState] = React.useState('EUR')
-
-  const handleChangeDistrict = (event) => {
-    setDistrict(event.target.value)
-  }
-  const handleChangeState = (event) => {
-    setState(event.target.value)
-  }
-
   const classes = useStyles()
-
   const onSubmit = (values, actions) => {
     // let finalData = {
     //   ...values,
@@ -88,8 +77,6 @@ export const SearchByDistricts = () => {
                     fullWidth
                     select
                     label='State'
-                    value={state}
-                    onChange={handleChangeState}
                     error={touched.state && Boolean(errors.state)}
                     helperText={touched.state && errors.state}
                     as={TextField}
@@ -110,8 +97,6 @@ export const SearchByDistricts = () => {
                     fullWidth
                     select
                     label='District'
-                    value={district}
-                    onChange={handleChangeDistrict}
                     error={touched.district && Boolean(errors.district)}
                     helperText={touched.district && errors.district}
                     as={TextField}
@@ -126,7 +111,7 @@ export const SearchByDistricts = () => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton />
+            <SearchButton isSubmitting={isSubmitting}/>
           </Card>
         </Form>
       )}
