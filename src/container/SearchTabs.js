@@ -8,6 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import { a11yProps } from "../components/SearchTabs/AllYProp";
 import { TabPanel } from "../components/SearchTabs/TabPanel";
 import { SearchByPincode } from "./SearchByPincode";
+import { SearchByDistricts } from "./SearchByDistricts";
 import { useStyles } from "../utils/styles";
 
 export default function FullWidthTabs() {
@@ -47,7 +48,7 @@ export default function FullWidthTabs() {
           <SearchByPincode />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          Search by district
+          <SearchByDistricts />
         </TabPanel>
       </SwipeableViews>
     </div>
