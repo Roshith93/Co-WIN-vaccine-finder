@@ -47,12 +47,15 @@ const currencies = [
 ]
 export const SearchByDistricts = () => {
   const [selectedValue, setSelectedValue] = React.useState('Dose1')
-  const [currency, setCurrency] = React.useState('EUR')
+  const [district, setDistrict] = React.useState('EUR')
+  const [state, setState] = React.useState('EUR')
 
-  const handleChangeVal = (event) => {
-    setCurrency(event.target.value)
+  const handleChangeDistrict = (event) => {
+    setDistrict(event.target.value)
   }
-
+  const handleChangeState = (event) => {
+   setState(event.target.value)
+  }
   const handleRadioChange = (event) => {
     setSelectedValue(event.target.value)
   }
@@ -94,8 +97,8 @@ export const SearchByDistricts = () => {
                     fullWidth
                     select
                     label='State'
-                    value={currency}
-                    onChange={handleChangeVal}
+                    value={state}
+                    onChange={handleChangeState}
                     error={touched.state && Boolean(errors.state)}
                     helperText={touched.state && errors.state}
                     as={TextField}
@@ -116,8 +119,8 @@ export const SearchByDistricts = () => {
                     fullWidth
                     select
                     label='District'
-                    value={currency}
-                    onChange={handleChangeVal}
+                    value={district}
+                    onChange={handleChangeDistrict}
                     error={touched.district && Boolean(errors.district)}
                     helperText={touched.district && errors.district}
                     as={TextField}
