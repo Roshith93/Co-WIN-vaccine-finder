@@ -11,7 +11,6 @@ import { CowinContext } from '../context/CowinContext'
 export const NavBar = ({ title }) => {
   const classes = useStyles()
   const values = useContext(CowinContext)
-  console.log(values)
   return (
     <div className={classes.navRoot}>
       <AppBar position='static'>

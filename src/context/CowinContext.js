@@ -5,8 +5,7 @@ import { API } from '../services/axios'
 export const CowinContext = createContext()
 
 const GET_STATES = 'http://localhost:3002/states' || '/v2/admin/location/states'
-const GET_DISTRICTS =
-  'http://localhost:3002/districts' || '/v2/admin/location/districts'
+const GET_DISTRICTS = '/v2/admin/location/districts'
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
@@ -27,10 +26,10 @@ const getStates = async () => {
   return response.data
 }
 
-const getDistricts = async (stateId = 1) => {
+const getDistricts = async (stateId) => {
   const response = await API.get(`${GET_DISTRICTS}/${stateId}`)
   console.log(response)
-  return response.data
+  return response.data.districts
 }
 export const CowinProvider = ({ children }) => {
   const [states, setStates] = useState([])
@@ -45,7 +44,13 @@ export const CowinProvider = ({ children }) => {
         .catch((error) => console.error(error)),
     []
   )
-  useEffect(() => getDistricts(), [])
+  useEffect(
+    () =>
+      getDistricts(stateId)
+        .then((response) => setDistricts(response))
+        .catch((error) => console.error(error)),
+    [stateId]
+  )
   return (
     <CowinContext.Provider
       value={{

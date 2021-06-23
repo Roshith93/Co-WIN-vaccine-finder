@@ -41,7 +41,7 @@ const currencies = [
   },
 ]
 export const SearchByDistricts = () => {
-  const { states } = useContext(CowinContext)
+  const { states, setStateId,districts } = useContext(CowinContext)
   const classes = useStyles()
   const onSubmit = (values, actions) => {
     // let finalData = {
@@ -82,6 +82,7 @@ export const SearchByDistricts = () => {
                     error={touched.state && Boolean(errors.state)}
                     helperText={touched.state && errors.state}
                     as={TextField}
+                    onChange={e => {handleChange(e); setStateId(e.target.value)}}
                   >
                     {states.map((option) => (
                       <MenuItem key={option.state_id} value={option.state_id}>
@@ -103,9 +104,9 @@ export const SearchByDistricts = () => {
                     helperText={touched.district && errors.district}
                     as={TextField}
                   >
-                    {currencies.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                    {districts.map((option) => (
+                      <MenuItem key={option.district_id} value={option.district_id}>
+                        {option.district_name}
                       </MenuItem>
                     ))}
                   </Field>
