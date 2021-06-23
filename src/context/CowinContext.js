@@ -34,7 +34,7 @@ const getDistricts = async (stateId) => {
 export const CowinProvider = ({ children }) => {
   const [states, setStates] = useState([])
   const [districts, setDistricts] = useState([])
-  const [stateId, setStateId] = useState([])
+  const [stateId, setStateId] = useState(null)
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   useEffect(
