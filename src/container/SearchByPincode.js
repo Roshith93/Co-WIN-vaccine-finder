@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
@@ -84,7 +84,7 @@ export const SearchByPincode = () => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton isSubmitting={isSubmitting}/>
+            <SearchButton isSubmitting={isSubmitting} />
           </Card>
         </Form>
       )}

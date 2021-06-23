@@ -71,7 +71,7 @@ export const tempData = {
     },
   ],
 }
-const arr = [
+export const arr = [
   {
     type: 'district',
     pincode: '110001',
