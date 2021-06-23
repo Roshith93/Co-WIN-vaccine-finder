@@ -6,6 +6,8 @@ export const CowinContext = createContext()
 
 const GET_STATES = 'http://localhost:3002/states' || '/v2/admin/location/states'
 const GET_DISTRICTS = '/v2/admin/location/districts'
+const FIND_BY_PINCODE =
+  '/v2/appointment/sessions/public/findByPin?pincode=110001&date=23-06-2021'
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
@@ -28,8 +30,14 @@ const getStates = async () => {
 
 const getDistricts = async (stateId) => {
   const response = await API.get(`${GET_DISTRICTS}/${stateId}`)
-  console.log(response)
   return response.data.districts
+}
+
+const getVaccinesByPin = async (pincode = '110001', searchDate = '23-06-2021') => {
+  const response = await API.get(
+    `${FIND_BY_PINCODE}?pincode=${pincode}&date=${searchDate}`
+  )
+  return response.data.sessions
 }
 export const CowinProvider = ({ children }) => {
   const [states, setStates] = useState([])
@@ -51,6 +59,7 @@ export const CowinProvider = ({ children }) => {
         .catch((error) => console.error(error)),
     [stateId]
   )
+  
   return (
     <CowinContext.Provider
       value={{
@@ -64,6 +73,7 @@ export const CowinProvider = ({ children }) => {
         setDistricts,
         stateId,
         setStateId,
+        getVaccinesByPin
       }}
     >
       {children}
