@@ -2,10 +2,11 @@ import { createContext, useState, useEffect } from 'react'
 
 import { API } from '../services/axios'
 
-
 export const CowinContext = createContext()
 
-const GET_STATES = '/v2/admin/location/states'
+const GET_STATES = 'http://localhost:3002/states' || '/v2/admin/location/states'
+const GET_DISTRICTS =
+  'http://localhost:3002/districts' || '/v2/admin/location/districts'
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
@@ -23,15 +24,22 @@ console.log(process.env.REACT_APP_BASE_URL)
 // }
 const getStates = async () => {
   const response = await API.get(GET_STATES)
+  return response.data
+}
+
+const getDistricts = async (stateId = 1) => {
+  const response = await API.get(`${GET_DISTRICTS}/${stateId}`)
   console.log(response)
-  return response
+  return response.data
 }
 export const CowinProvider = ({ children }) => {
   const [states, setStates] = useState([])
   const [districts, setDistricts] = useState([])
+  const [stateId, setStateId] = useState([])
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   useEffect(() => getStates(), [])
+  useEffect(() => getDistricts(), [])
   return (
     <CowinContext.Provider
       value={{
@@ -43,6 +51,8 @@ export const CowinProvider = ({ children }) => {
         setStates,
         districts,
         setDistricts,
+        stateId,
+        setStateId,
       }}
     >
       {children}
