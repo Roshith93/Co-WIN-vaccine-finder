@@ -38,7 +38,13 @@ export const CowinProvider = ({ children }) => {
   const [stateId, setStateId] = useState([])
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
-  useEffect(() => getStates(), [])
+  useEffect(
+    () =>
+      getStates()
+        .then((response) => setStates(response))
+        .catch((error) => console.error(error)),
+    []
+  )
   useEffect(() => getDistricts(), [])
   return (
     <CowinContext.Provider

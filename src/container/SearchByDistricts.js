@@ -1,4 +1,4 @@
-import React from 'react'
+import { useContext } from 'react'
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
@@ -9,6 +9,7 @@ import * as Yup from 'yup'
 
 import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
+import { CowinContext } from '../context/CowinContext'
 // import { getFormattedDate } from "../utils/data";
 import { useStyles } from '../utils/styles'
 
@@ -40,6 +41,7 @@ const currencies = [
   },
 ]
 export const SearchByDistricts = () => {
+  const { states } = useContext(CowinContext)
   const classes = useStyles()
   const onSubmit = (values, actions) => {
     // let finalData = {
@@ -81,9 +83,9 @@ export const SearchByDistricts = () => {
                     helperText={touched.state && errors.state}
                     as={TextField}
                   >
-                    {currencies.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                    {states.map((option) => (
+                      <MenuItem key={option.state_id} value={option.state_id}>
+                        {option.state_name}
                       </MenuItem>
                     ))}
                   </Field>
@@ -111,7 +113,7 @@ export const SearchByDistricts = () => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton isSubmitting={isSubmitting}/>
+            <SearchButton isSubmitting={isSubmitting} />
           </Card>
         </Form>
       )}
