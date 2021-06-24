@@ -1,56 +1,61 @@
-import { useState } from "react";
-import SwipeableViews from "react-swipeable-views";
-import { useTheme } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import { useState } from 'react'
+import SwipeableViews from 'react-swipeable-views'
+import { useTheme } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
-import { a11yProps } from "../components/SearchTabs/AllYProp";
-import { TabPanel } from "../components/SearchTabs/TabPanel";
-import { SearchByPincode } from "./SearchByPincode";
-import { SearchByDistricts } from "./SearchByDistricts";
-import { useStyles } from "../utils/styles";
+import { a11yProps } from '../components/SearchTabs/AllYProp'
+import { TabPanel } from '../components/SearchTabs/TabPanel'
+import { SearchByPincode } from './SearchByPincode'
+import { SearchByDistricts } from './SearchByDistricts'
+import { useStyles } from '../utils/styles'
 
 export default function FullWidthTabs() {
-  const classes = useStyles();
-  const theme = useTheme();
-  const [value, setValue] = useState(0);
+  const classes = useStyles()
+  const theme = useTheme()
+  const [value, setValue] = useState(0)
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const handleChangeIndex = (index) => {
-    setValue(index);
-  };
-
+    setValue(index)
+  }
+  let tabContents = [<SearchByPincode />, <SearchByDistricts />]
+  let tabTitles = ['Search By Pin', 'Search By District']
   return (
     <div className={classes.searchTabRoot}>
-      <AppBar position="static" color="default">
+      <AppBar position='static' color='default'>
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="primary"
-          variant="fullWidth"
-          aria-label="full width tabs example"
+          indicatorColor='primary'
+          textColor='primary'
+          // variant="fullWidth"
+          variant='scrollable'
+          scrollButtons='auto'
+          aria-label='full width tabs example'
         >
-          <Tab label="Search By Pin" {...a11yProps(0)} />
-          <Tab label="Search By District" {...a11yProps(1)} />
+          {tabTitles.map((el, idx) => {
+            return <Tab label={el} {...a11yProps(idx)} />
+          })}
         </Tabs>
       </AppBar>
       <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
         onChangeIndex={handleChangeIndex}
       >
-        <TabPanel value={value} index={0} dir={theme.direction}>
-          <SearchByPincode />
-        </TabPanel>
-        <TabPanel value={value} index={1} dir={theme.direction}>
-          <SearchByDistricts />
-        </TabPanel>
+        {tabContents.map((el, idx) => {
+          return (
+            <TabPanel value={value} index={idx} dir={theme.direction}>
+              {el}
+            </TabPanel>
+          )
+        })}
       </SwipeableViews>
     </div>
-  );
+  )
 }
