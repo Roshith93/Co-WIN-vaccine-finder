@@ -5,13 +5,14 @@ import { Heading } from "../components/Heading";
 import SearchTabs from "./SearchTabs";
 import { useStyles } from "../utils/styles";
 
-export const VaccineFinder = () => {
+export const VaccineFinder = (props) => {
+  console.log(props)
   const classes = useStyles();
   return (
     <Container maxWidth="md" className={classes.homeContainer}>
       <Paper elevation={3} className={classes.paperRoot}>
         <Heading variant="h3" title="Find Vaccines near you" isCenter />
-        <SearchTabs />
+        <SearchTabs {...props}/>
       </Paper>
     </Container>
   );

@@ -12,7 +12,7 @@ import { SearchByDistricts } from './SearchByDistricts'
 import { useStyles } from '../utils/styles'
 import { CowinContext } from '../context/CowinContext'
 
-export default function FullWidthTabs() {
+export default function FullWidthTabs(props) {
   const { currentWeek } = useContext(CowinContext)
   const classes = useStyles()
   const theme = useTheme()
@@ -25,7 +25,7 @@ export default function FullWidthTabs() {
   const handleChangeIndex = (index) => {
     setValue(index)
   }
-  let tabContents = [<SearchByPincode />, <SearchByDistricts />]
+  let tabContents = [<SearchByPincode {...props}/>, <SearchByDistricts {...props}/>]
   let tabTitles = currentWeek || ['Search By Pin', 'Search By District']
   return (
     <div className={classes.searchTabRoot}>

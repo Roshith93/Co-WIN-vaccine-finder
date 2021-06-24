@@ -31,23 +31,23 @@ export const getDates = (startDate, daysToAdd = 7) => {
   return aryDates
 }
 
-function MonthAsString(monthIndex) {
-  var month = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'June',
-    'July',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ]
-  return month[monthIndex]
-}
+// function MonthAsString(monthIndex) {
+//   var month = [
+//     'Jan',
+//     'Feb',
+//     'Mar',
+//     'Apr',
+//     'May',
+//     'June',
+//     'July',
+//     'Aug',
+//     'Sep',
+//     'Oct',
+//     'Nov',
+//     'Dec',
+//   ]
+//   return month[monthIndex]
+// }
 
 function DayAsString(dayIndex) {
   var weekdays = [

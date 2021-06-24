@@ -1,14 +1,13 @@
 import { createContext, useState, useEffect } from 'react'
 
 import { API } from '../services/axios'
-import {getDates} from '../utils/data'
+import { getDates } from '../utils/data'
 
 export const CowinContext = createContext()
 
 const GET_STATES = '/v2/admin/location/states'
 const GET_DISTRICTS = '/v2/admin/location/districts'
-const FIND_BY_PINCODE =
-  '/v2/appointment/sessions/public/findByPin'
+const FIND_BY_PINCODE = '/v2/appointment/sessions/public/findByPin'
 const FIND_BY_DISTRICT_ID = '/v2/appointment/sessions/public/findByDistrict'
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
@@ -35,26 +34,21 @@ const getDistricts = async (stateId) => {
   return response.data.districts
 }
 
-const getVaccinesByPin = async (
-  pincode,
-  searchDate
-) => {
+const getVaccinesByPin = async (pincode, searchDate) => {
   const response = await API.get(
     `${FIND_BY_PINCODE}?pincode=${pincode}&date=${searchDate}`
   )
   return response.data.sessions
 }
 
-const getVaccinesByDistricts = async (
-  districtId,
-  searchDate
-) => {
+const getVaccinesByDistricts = async (districtId, searchDate) => {
   const response = await API.get(
     `${FIND_BY_DISTRICT_ID}?district_id=${districtId}&date=${searchDate}`
   )
   return response.data.sessions
 }
 export const CowinProvider = ({ children }) => {
+  const [sessions, setSessions] = useState([])
   const [states, setStates] = useState([])
   const [districts, setDistricts] = useState([])
   const [stateId, setStateId] = useState(null)
@@ -94,7 +88,9 @@ export const CowinProvider = ({ children }) => {
         districtId,
         setDistrictId,
         getVaccinesByDistricts,
-        currentWeek
+        currentWeek,
+        sessions,
+        setSessions,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { NavBar } from './components/NavBar'
 import { VaccineFinder } from './container/VaccineFinder'
+import { VaccineSlots } from './container/VaccineSlots'
 
 function App() {
   return (
@@ -9,18 +10,12 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/' component={VaccineFinder} />
-          <Route exact path='/vaccineslots:name' component={VaccineSlots} />
+          <Route exact path='/vaccineslots' component={VaccineSlots} />
         </Switch>
-        <Link to={`/vaccineslots:${123}`}>GO vaccine</Link>
+        {/* {sessions ? <Redirect to='/vaccineslots' /> : null} */}
       </Router>
     </>
   )
 }
 
 export default App
-
-const VaccineSlots = ({
-  match: {
-    params: { name },
-  },
-}) => <p>VaccineSlots : {name}</p>
