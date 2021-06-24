@@ -10,7 +10,6 @@ import * as Yup from 'yup'
 import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
-// import { getFormattedDate } from "../utils/data";
 import { useStyles } from '../utils/styles'
 import { getFormattedDate } from '../utils/data'
 
