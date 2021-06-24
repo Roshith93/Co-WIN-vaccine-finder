@@ -19,11 +19,12 @@ export const getDates = (startDate, daysToAdd = 7) => {
     aryDates.push(
       DayAsString(currentDate.getDay()) +
         ', ' +
-        currentDate.getDate() +
-        ' ' +
-        MonthAsString(currentDate.getMonth()) +
-        ' ' +
-        currentDate.getFullYear()
+        currentDate.getDate() 
+        // +
+        // ' ' +
+        // MonthAsString(currentDate.getMonth()) +
+        // ' ' +
+        // currentDate.getFullYear()
     )
   }
 
@@ -32,31 +33,31 @@ export const getDates = (startDate, daysToAdd = 7) => {
 
 function MonthAsString(monthIndex) {
   var month = [
-    'January',
-    'February',
-    'March',
-    'April',
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
     'May',
     'June',
     'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ]
   return month[monthIndex]
 }
 
 function DayAsString(dayIndex) {
   var weekdays = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thrusday',
-    'Friday',
-    'Saturday',
+    'SUN',
+    'MON',
+    'TUE',
+    'WED',
+    'THR',
+    'FRI',
+    'SAT',
   ]
   return weekdays[dayIndex]
 }
