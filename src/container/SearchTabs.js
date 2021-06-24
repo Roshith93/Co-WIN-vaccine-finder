@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -10,8 +10,10 @@ import { TabPanel } from '../components/SearchTabs/TabPanel'
 import { SearchByPincode } from './SearchByPincode'
 import { SearchByDistricts } from './SearchByDistricts'
 import { useStyles } from '../utils/styles'
+import { CowinContext } from '../context/CowinContext'
 
 export default function FullWidthTabs() {
+  const { currentWeek } = useContext(CowinContext)
   const classes = useStyles()
   const theme = useTheme()
   const [value, setValue] = useState(0)
@@ -24,7 +26,7 @@ export default function FullWidthTabs() {
     setValue(index)
   }
   let tabContents = [<SearchByPincode />, <SearchByDistricts />]
-  let tabTitles = ['Search By Pin', 'Search By District']
+  let tabTitles = currentWeek || ['Search By Pin', 'Search By District']
   return (
     <div className={classes.searchTabRoot}>
       <AppBar position='static' color='default'>

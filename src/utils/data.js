@@ -10,6 +10,61 @@ export const getFormattedDate = (date) => {
   return day + '-' + month + '-' + year
 }
 
+export const getDates = (startDate, daysToAdd = 7) => {
+  var aryDates = []
+
+  for (var i = 0; i <= daysToAdd; i++) {
+    var currentDate = new Date()
+    currentDate.setDate(startDate.getDate() + i)
+    aryDates.push(
+      DayAsString(currentDate.getDay()) +
+        ', ' +
+        currentDate.getDate() +
+        ' ' +
+        MonthAsString(currentDate.getMonth()) +
+        ' ' +
+        currentDate.getFullYear()
+    )
+  }
+
+  return aryDates
+}
+
+function MonthAsString(monthIndex) {
+  var month = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ]
+  return month[monthIndex]
+}
+
+function DayAsString(dayIndex) {
+  var weekdays = [
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thrusday',
+    'Friday',
+    'Saturday',
+  ]
+  return weekdays[dayIndex]
+}
+
+var startDate = new Date()
+var aryDates = getDates(startDate, 7)
+console.log(aryDates)
+
 export const tempData = {
   sessions: [
     {

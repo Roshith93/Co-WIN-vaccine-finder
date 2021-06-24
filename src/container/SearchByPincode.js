@@ -25,7 +25,6 @@ const validationSchema = Yup.object({
 export const SearchByPincode = () => {
   const classes = useStyles()
   const { getVaccinesByPin } = useContext(CowinContext)
-  console.log(getVaccinesByPin)
 
   const onSubmit = (values, actions) => {
     const { pincode } = values
