@@ -4,10 +4,11 @@ import { API } from '../services/axios'
 
 export const CowinContext = createContext()
 
-const GET_STATES = 'http://localhost:3002/states' || '/v2/admin/location/states'
+const GET_STATES = '/v2/admin/location/states'
 const GET_DISTRICTS = '/v2/admin/location/districts'
 const FIND_BY_PINCODE =
-  '/v2/appointment/sessions/public/findByPin?pincode=110001&date=23-06-2021'
+  '/v2/appointment/sessions/public/findByPin'
+const FIND_BY_DISTRICT_ID = '/v2/appointment/sessions/public/findByDistrict'
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
@@ -25,7 +26,7 @@ console.log(process.env.REACT_APP_BASE_URL)
 // }
 const getStates = async () => {
   const response = await API.get(GET_STATES)
-  return response.data
+  return response.data.states
 }
 
 const getDistricts = async (stateId) => {
@@ -33,9 +34,22 @@ const getDistricts = async (stateId) => {
   return response.data.districts
 }
 
-const getVaccinesByPin = async (pincode = '110001', searchDate = '23-06-2021') => {
+const getVaccinesByPin = async (
+  pincode,
+  searchDate
+) => {
   const response = await API.get(
     `${FIND_BY_PINCODE}?pincode=${pincode}&date=${searchDate}`
+  )
+  return response.data.sessions
+}
+
+const getVaccinesByDistricts = async (
+  districtId,
+  searchDate
+) => {
+  const response = await API.get(
+    `${FIND_BY_DISTRICT_ID}?district_id=${districtId}&date=${searchDate}`
   )
   return response.data.sessions
 }
@@ -43,6 +57,7 @@ export const CowinProvider = ({ children }) => {
   const [states, setStates] = useState([])
   const [districts, setDistricts] = useState([])
   const [stateId, setStateId] = useState(null)
+  const [districtId, setDistrictId] = useState(null)
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   useEffect(
@@ -59,7 +74,7 @@ export const CowinProvider = ({ children }) => {
         .catch((error) => console.error(error)),
     [stateId]
   )
-  
+
   return (
     <CowinContext.Provider
       value={{
@@ -73,7 +88,10 @@ export const CowinProvider = ({ children }) => {
         setDistricts,
         stateId,
         setStateId,
-        getVaccinesByPin
+        getVaccinesByPin,
+        districtId,
+        setDistrictId,
+        getVaccinesByDistricts,
       }}
     >
       {children}

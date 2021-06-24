@@ -12,6 +12,7 @@ import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
 // import { getFormattedDate } from "../utils/data";
 import { useStyles } from '../utils/styles'
+import { getFormattedDate } from '../utils/data'
 
 const initialValues = {
   state: '',
@@ -24,13 +25,25 @@ const validationSchema = Yup.object({
 })
 
 export const SearchByDistricts = () => {
-  const { states, setStateId, stateId, districts } = useContext(CowinContext)
+  const {
+    states,
+    setStateId,
+    stateId,
+    districts,
+    districtId,
+    setDistrictId,
+    getVaccinesByDistricts,
+  } = useContext(CowinContext)
   const classes = useStyles()
   const onSubmit = (values, actions) => {
-    // let finalData = {
-    //   ...values,
-    //   date: getFormattedDate(new Date())
-    // };
+    let currentDate = getFormattedDate(new Date())
+
+    getVaccinesByDistricts(districtId, currentDate)
+      .then((res) => {
+        console.log(res)
+        actions.setSubmitting(false)
+      })
+      .catch((err) => console.error(err))
   }
 
   return (
@@ -86,8 +99,18 @@ export const SearchByDistricts = () => {
                     fullWidth
                     select
                     label='District'
-                    error={touched.state && touched.district && Boolean(errors.district)}
-                    helperText={touched.state && touched.district && errors.district}
+                    onChange={(e) => {
+                      handleChange(e)
+                      setDistrictId(e.target.value)
+                    }}
+                    error={
+                      touched.state &&
+                      touched.district &&
+                      Boolean(errors.district)
+                    }
+                    helperText={
+                      touched.state && touched.district && errors.district
+                    }
                     as={TextField}
                   >
                     {stateId ? (

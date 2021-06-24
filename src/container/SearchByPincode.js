@@ -31,7 +31,6 @@ export const SearchByPincode = () => {
     const { pincode } = values
     const currentDate = getFormattedDate(new Date())
 
-    console.log(values)
     getVaccinesByPin(pincode, currentDate)
       .then((res) => {
         console.log(res)
