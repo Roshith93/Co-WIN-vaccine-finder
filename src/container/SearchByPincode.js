@@ -22,19 +22,20 @@ const validationSchema = Yup.object({
     .matches(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/, 'Not a valid pincode'),
 })
 
-export const SearchByPincode = ({history}) => {
+export const SearchByPincode = ({ history }) => {
   const classes = useStyles()
-  const { getVaccinesByPin, setSessions } = useContext(CowinContext)
+  const { getVaccinesByPin, setSessions, setIsVaccineSlotsAvailable } =
+    useContext(CowinContext)
 
-  const onSubmit = (values, actions) => {
+  const onSubmit = async (values, actions) => {
     const { pincode } = values
     const currentDate = getFormattedDate(new Date())
 
-    getVaccinesByPin(pincode, currentDate)
+    await getVaccinesByPin(pincode, currentDate)
       .then((res) => {
         setSessions(res)
         actions.setSubmitting(false)
-        history.replace('/vaccineslots')
+        setIsVaccineSlotsAvailable(true)
       })
       .catch((err) => {
         console.error(err)

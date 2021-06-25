@@ -7,13 +7,8 @@ function App() {
   return (
     <>
       <NavBar title='Co-WIN Vaccine Finder' />
-      <Router>
-        <Switch>
-          <Route exact path='/' component={VaccineFinder} />
-          <Route exact path='/vaccineslots' component={VaccineSlots} />
-        </Switch>
-        {/* {sessions ? <Redirect to='/vaccineslots' /> : null} */}
-      </Router>
+      <VaccineFinder/>
+      
     </>
   )
 }

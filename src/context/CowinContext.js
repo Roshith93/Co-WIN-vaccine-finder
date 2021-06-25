@@ -56,6 +56,7 @@ export const CowinProvider = ({ children }) => {
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   const [currentWeek] = useState(getDates(new Date(), 7))
+  const [isVaccineSlotsAvailable, setIsVaccineSlotsAvailable] = useState(false)
   useEffect(
     () =>
       getStates()
@@ -91,6 +92,8 @@ export const CowinProvider = ({ children }) => {
         currentWeek,
         sessions,
         setSessions,
+        isVaccineSlotsAvailable,
+        setIsVaccineSlotsAvailable,
       }}
     >
       {children}

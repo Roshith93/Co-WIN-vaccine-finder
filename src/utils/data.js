@@ -17,14 +17,12 @@ export const getDates = (startDate, daysToAdd = 7) => {
     var currentDate = new Date()
     currentDate.setDate(startDate.getDate() + i)
     aryDates.push(
-      DayAsString(currentDate.getDay()) +
-        ', ' +
-        currentDate.getDate() 
-        // +
-        // ' ' +
-        // MonthAsString(currentDate.getMonth()) +
-        // ' ' +
-        // currentDate.getFullYear()
+      DayAsString(currentDate.getDay()) + ', ' + currentDate.getDate()
+      // +
+      // ' ' +
+      // MonthAsString(currentDate.getMonth()) +
+      // ' ' +
+      // currentDate.getFullYear()
     )
   }
 
@@ -50,15 +48,7 @@ export const getDates = (startDate, daysToAdd = 7) => {
 // }
 
 function DayAsString(dayIndex) {
-  var weekdays = [
-    'SUN',
-    'MON',
-    'TUE',
-    'WED',
-    'THR',
-    'FRI',
-    'SAT',
-  ]
+  var weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THR', 'FRI', 'SAT']
   return weekdays[dayIndex]
 }
 

@@ -9,15 +9,17 @@ import { a11yProps } from '../components/SearchTabs/AllYProp'
 import { TabPanel } from '../components/SearchTabs/TabPanel'
 import { SearchByPincode } from './SearchByPincode'
 import { SearchByDistricts } from './SearchByDistricts'
+import { VaccineSlots } from './VaccineSlots'
 import { useStyles } from '../utils/styles'
 import { CowinContext } from '../context/CowinContext'
 
 export default function FullWidthTabs(props) {
-  const { currentWeek } = useContext(CowinContext)
+  const { currentWeek, isVaccineSlotsAvailable } = useContext(CowinContext)
   const classes = useStyles()
   const theme = useTheme()
   const [value, setValue] = useState(0)
 
+  console.log(isVaccineSlotsAvailable)
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
@@ -25,8 +27,12 @@ export default function FullWidthTabs(props) {
   const handleChangeIndex = (index) => {
     setValue(index)
   }
-  let tabContents = [<SearchByPincode {...props}/>, <SearchByDistricts {...props}/>]
-  let tabTitles = currentWeek || ['Search By Pin', 'Search By District']
+  let tabContents = isVaccineSlotsAvailable
+    ? [<VaccineSlots />]
+    : [<SearchByPincode {...props} />, <SearchByDistricts {...props} />]
+  let tabTitles = isVaccineSlotsAvailable
+    ? currentWeek
+    : ['Search By Pin', 'Search By District']
   return (
     <div className={classes.searchTabRoot}>
       <AppBar position='static' color='default'>
