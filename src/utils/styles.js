@@ -46,6 +46,25 @@ export const useStyles = makeStyles((theme) => ({
       fontWeight: 'normal',
     },
   },
+  slotRoot: {
+    flexGrow: 1,
+  },
+  bullet: {
+    display: 'inline-block',
+    margin: '0 2px',
+    transform: 'scale(0.8)',
+  },
+  title: {
+    fontWeight: 'bolder',
+  },
+  slot: { color: 'green', textTransform: 'uppercase', fontWeight: 'bold' },
+  age: { textTransform: 'uppercase', fontWeight: 'bold' },
+  vaccine: { textTransform: 'uppercase', fontWeight: 'bold' },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'left',
+    color: theme.palette.text.secondary,
+  },
 }))
 
 

@@ -12,28 +12,7 @@ import Badge from '@material-ui/core/Badge'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 
 import { CowinContext } from '../context/CowinContext'
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontWeight: 'bolder',
-  },
-  slot: { color: 'green', textTransform: 'uppercase', fontWeight: 'bold' },
-  age: { textTransform: 'uppercase', fontWeight: 'bold' },
-  vaccine: { textTransform: 'uppercase', fontWeight: 'bold' },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
-  },
-}))
+import {useStyles} from '../utils/styles'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -51,7 +30,7 @@ export const VaccineSlots = () => {
     sessions &&
     sessions.sort((a, b) => a.available_capacity - b.available_capacity)
   return (
-    <div className={classes.root}>
+    <div className={classes.slotRoot}>
       <Grid container spacing={3}>
         {sessions.length
           ? sortSessions.map((session) => {
