@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from 'react'
 
 import { API } from '../services/axios'
-import { getDates } from '../utils/data'
+import { getDates, getFormattedDate } from '../utils/data'
 
 export const CowinContext = createContext()
 
@@ -53,10 +53,15 @@ export const CowinProvider = ({ children }) => {
   const [districts, setDistricts] = useState([])
   const [stateId, setStateId] = useState(null)
   const [districtId, setDistrictId] = useState(null)
+  const [pincode, setPincode] = useState(null)
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   const [currentWeek] = useState(getDates(new Date(), 7))
+  const [formattedDate, setFormattedDate] = useState(
+    getFormattedDate(new Date())
+  )
   const [isVaccineSlotsAvailable, setIsVaccineSlotsAvailable] = useState(false)
+  const [apiCalledBy, setApiCalledBy] = useState(null)
   useEffect(
     () =>
       getStates()
@@ -94,6 +99,12 @@ export const CowinProvider = ({ children }) => {
         setSessions,
         isVaccineSlotsAvailable,
         setIsVaccineSlotsAvailable,
+        pincode,
+        setPincode,
+        formattedDate,
+        setFormattedDate,
+        apiCalledBy,
+        setApiCalledBy,
       }}
     >
       {children}

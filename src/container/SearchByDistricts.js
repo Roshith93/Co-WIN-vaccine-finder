@@ -11,7 +11,6 @@ import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
 import { useStyles } from '../utils/styles'
-import { getFormattedDate } from '../utils/data'
 
 const initialValues = {
   state: '',
@@ -23,7 +22,7 @@ const validationSchema = Yup.object({
   district: Yup.string().required('Please select the district'),
 })
 
-export const SearchByDistricts = () => {
+export const SearchByDistricts = ({ calledBy }) => {
   const {
     states,
     setStateId,
@@ -34,12 +33,15 @@ export const SearchByDistricts = () => {
     getVaccinesByDistricts,
     setSessions,
     setIsVaccineSlotsAvailable,
+    formattedDate,
+    setApiCalledBy,
+    apiCalledBy,
   } = useContext(CowinContext)
   const classes = useStyles()
+  setApiCalledBy(calledBy)
+  console.log(apiCalledBy)
   const onSubmit = (values, actions) => {
-    let currentDate = getFormattedDate(new Date())
-
-    getVaccinesByDistricts(districtId, currentDate)
+    getVaccinesByDistricts(districtId, formattedDate)
       .then((res) => {
         setSessions(res)
         actions.setSubmitting(false)
@@ -134,7 +136,7 @@ export const SearchByDistricts = () => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton isSubmitting={isSubmitting} />
+            <SearchButton isSubmitting={isSubmitting} calledBy='district' />
           </Card>
         </Form>
       )}

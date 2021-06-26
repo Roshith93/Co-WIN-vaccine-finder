@@ -9,7 +9,6 @@ import * as Yup from 'yup'
 import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
-import { getFormattedDate } from '../utils/data'
 import { useStyles } from '../utils/styles'
 
 const initialValues = {
@@ -22,16 +21,23 @@ const validationSchema = Yup.object({
     .matches(/^[1-9]{1}[0-9]{2}\s{0,1}[0-9]{3}$/, 'Not a valid pincode'),
 })
 
-export const SearchByPincode = ({ history }) => {
+export const SearchByPincode = ({ calledBy }) => {
   const classes = useStyles()
-  const { getVaccinesByPin, setSessions, setIsVaccineSlotsAvailable } =
-    useContext(CowinContext)
-
+  const {
+    getVaccinesByPin,
+    setSessions,
+    setIsVaccineSlotsAvailable,
+    setPincode,
+    formattedDate
+    ,setApiCalledBy, apiCalledBy 
+  } = useContext(CowinContext)
+  setApiCalledBy(calledBy)
+  console.log(apiCalledBy)
   const onSubmit = async (values, actions) => {
     const { pincode } = values
-    const currentDate = getFormattedDate(new Date())
+    setPincode(pincode)
 
-    await getVaccinesByPin(pincode, currentDate)
+    await getVaccinesByPin(pincode, formattedDate)
       .then((res) => {
         setSessions(res)
         actions.setSubmitting(false)
@@ -84,7 +90,7 @@ export const SearchByPincode = ({ history }) => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton isSubmitting={isSubmitting} />
+            <SearchButton isSubmitting={isSubmitting} calledBy="pincode"/>
           </Card>
         </Form>
       )}

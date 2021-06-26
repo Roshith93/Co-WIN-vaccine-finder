@@ -48,11 +48,9 @@ export const VaccineSlots = () => {
               } = session
               if (min_age_limit === 18) {
                 min_age_limit = '18-44'
-                console.log(min_age_limit)
               }
               if (min_age_limit === 45) {
                 min_age_limit = '45+'
-                console.log(min_age_limit)
               }
               return (
                 <Grid item xs={12} sm={6} key={uuidv4()}>

@@ -19,20 +19,30 @@ export default function FullWidthTabs(props) {
   const theme = useTheme()
   const [value, setValue] = useState(0)
 
-  console.log(isVaccineSlotsAvailable)
   const handleChange = (event, newValue) => {
+    console.log('tabchange', event.target.value, newValue)
     setValue(newValue)
+    console.log('currentWeek', currentWeek[newValue].value)
   }
 
   const handleChangeIndex = (index) => {
+    alert("coming here")
+    console.log('changeIndex', index)
+
     setValue(index)
   }
+  let slots = []
+  for (let i = 0; i <= currentWeek.length; i++) {
+    slots.push(<VaccineSlots index={i} />)
+  }
+  console.log('slots', slots)
   let tabContents = isVaccineSlotsAvailable
-    ? [<VaccineSlots />]
-    : [<SearchByPincode {...props} />, <SearchByDistricts {...props} />]
+    ? slots
+    : [<SearchByPincode {...props} calledBy="pincode" />, <SearchByDistricts {...props} calledBy="district"/>]
   let tabTitles = isVaccineSlotsAvailable
-    ? currentWeek
+    ? currentWeek.map(({ label }) => label)
     : ['Search By Pin', 'Search By District']
+  console.log('tabContentssss', tabContents)
   return (
     <div className={classes.searchTabRoot}>
       <AppBar position='static' color='default'>
@@ -54,7 +64,7 @@ export default function FullWidthTabs(props) {
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
-        onChangeIndex={handleChangeIndex}
+        // onChangeIndex={handleChangeIndex}
       >
         {tabContents.map((el, idx) => {
           return (
