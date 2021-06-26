@@ -61,7 +61,8 @@ export const CowinProvider = ({ children }) => {
     getFormattedDate(new Date())
   )
   const [isVaccineSlotsAvailable, setIsVaccineSlotsAvailable] = useState(false)
-  const [apiCalledBy, setApiCalledBy] = useState(null)
+  const [districtCall, setDistrictCall] = useState(null)
+  const [pincodeCall, setPincodeCall] = useState(null)
   useEffect(
     () =>
       getStates()
@@ -77,6 +78,30 @@ export const CowinProvider = ({ children }) => {
     [stateId]
   )
 
+  useEffect(() => {
+    if (pincode !== null) {
+      getVaccinesByPin(pincode, formattedDate)
+        .then((res) => {
+          console.log('pin')
+          setSessions(res)
+          setIsVaccineSlotsAvailable(true)
+        })
+        .catch((err) => {
+          console.error(err)
+        })
+    }
+  }, [districtCall, formattedDate])
+  useEffect(() => {
+    if (districtId !== null) {
+      getVaccinesByDistricts(districtId, formattedDate)
+        .then((res) => {
+          console.log('dis')
+          setSessions(res)
+          setIsVaccineSlotsAvailable(true)
+        })
+        .catch((err) => console.error(err))
+    }
+  }, [pincodeCall, formattedDate])
   return (
     <CowinContext.Provider
       value={{
@@ -103,8 +128,10 @@ export const CowinProvider = ({ children }) => {
         setPincode,
         formattedDate,
         setFormattedDate,
-        apiCalledBy,
-        setApiCalledBy,
+        districtCall,
+        setDistrictCall,
+        pincodeCall,
+        setPincodeCall,
       }}
     >
       {children}

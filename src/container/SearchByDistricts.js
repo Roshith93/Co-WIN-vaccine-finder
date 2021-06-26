@@ -34,12 +34,10 @@ export const SearchByDistricts = ({ calledBy }) => {
     setSessions,
     setIsVaccineSlotsAvailable,
     formattedDate,
-    setApiCalledBy,
-    apiCalledBy,
+    districtCall,
+    setDistrictCall,
   } = useContext(CowinContext)
   const classes = useStyles()
-  setApiCalledBy(calledBy)
-  console.log(apiCalledBy)
   const onSubmit = (values, actions) => {
     getVaccinesByDistricts(districtId, formattedDate)
       .then((res) => {

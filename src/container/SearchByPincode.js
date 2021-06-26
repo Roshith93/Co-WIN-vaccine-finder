@@ -28,11 +28,10 @@ export const SearchByPincode = ({ calledBy }) => {
     setSessions,
     setIsVaccineSlotsAvailable,
     setPincode,
-    formattedDate
-    ,setApiCalledBy, apiCalledBy 
+    formattedDate,
+    pincodeCall,
+    setPincodeCall,
   } = useContext(CowinContext)
-  setApiCalledBy(calledBy)
-  console.log(apiCalledBy)
   const onSubmit = async (values, actions) => {
     const { pincode } = values
     setPincode(pincode)
@@ -90,7 +89,7 @@ export const SearchByPincode = ({ calledBy }) => {
                 <OptionalSection />
               </Grid>
             </CardContent>
-            <SearchButton isSubmitting={isSubmitting} calledBy="pincode"/>
+            <SearchButton isSubmitting={isSubmitting} calledBy='pincode' />
           </Card>
         </Form>
       )}

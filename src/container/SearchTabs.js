@@ -14,7 +14,7 @@ import { useStyles } from '../utils/styles'
 import { CowinContext } from '../context/CowinContext'
 
 export default function FullWidthTabs(props) {
-  const { currentWeek, isVaccineSlotsAvailable } = useContext(CowinContext)
+  const { currentWeek, isVaccineSlotsAvailable , setFormattedDate} = useContext(CowinContext)
   const classes = useStyles()
   const theme = useTheme()
   const [value, setValue] = useState(0)
@@ -22,15 +22,10 @@ export default function FullWidthTabs(props) {
   const handleChange = (event, newValue) => {
     console.log('tabchange', event.target.value, newValue)
     setValue(newValue)
+    setFormattedDate(currentWeek[newValue].value)
     console.log('currentWeek', currentWeek[newValue].value)
   }
 
-  const handleChangeIndex = (index) => {
-    alert("coming here")
-    console.log('changeIndex', index)
-
-    setValue(index)
-  }
   let slots = []
   for (let i = 0; i <= currentWeek.length; i++) {
     slots.push(<VaccineSlots index={i} />)
@@ -38,7 +33,7 @@ export default function FullWidthTabs(props) {
   console.log('slots', slots)
   let tabContents = isVaccineSlotsAvailable
     ? slots
-    : [<SearchByPincode {...props} calledBy="pincode" />, <SearchByDistricts {...props} calledBy="district"/>]
+    : [<SearchByPincode {...props} />, <SearchByDistricts {...props} />]
   let tabTitles = isVaccineSlotsAvailable
     ? currentWeek.map(({ label }) => label)
     : ['Search By Pin', 'Search By District']
@@ -64,7 +59,6 @@ export default function FullWidthTabs(props) {
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={value}
-        // onChangeIndex={handleChangeIndex}
       >
         {tabContents.map((el, idx) => {
           return (
