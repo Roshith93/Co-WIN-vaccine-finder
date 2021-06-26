@@ -63,7 +63,7 @@ export const VaccineSlots = () => {
                         component='h3'
                         title={`${name}`}
                         color='primary'
-                        className={classes.title}
+                        className={classes.center}
                       >
                         {name}
                       </Typography>

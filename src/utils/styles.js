@@ -54,7 +54,7 @@ export const useStyles = makeStyles((theme) => ({
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  title: {
+  center: {
     fontWeight: 'bolder',
   },
   slot: { color: 'green', textTransform: 'uppercase', fontWeight: 'bold' },

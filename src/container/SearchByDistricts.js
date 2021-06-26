@@ -32,7 +32,8 @@ export const SearchByDistricts = () => {
     districtId,
     setDistrictId,
     getVaccinesByDistricts,
-    setSessions
+    setSessions,
+    setIsVaccineSlotsAvailable,
   } = useContext(CowinContext)
   const classes = useStyles()
   const onSubmit = (values, actions) => {
@@ -42,6 +43,7 @@ export const SearchByDistricts = () => {
       .then((res) => {
         setSessions(res)
         actions.setSubmitting(false)
+        setIsVaccineSlotsAvailable(true)
       })
       .catch((err) => console.error(err))
   }
