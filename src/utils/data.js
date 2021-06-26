@@ -1,3 +1,4 @@
+var moment = require('moment');
 export const getFormattedDate = (date) => {
   var year = date.getFullYear()
 
@@ -9,23 +10,17 @@ export const getFormattedDate = (date) => {
 
   return day + '-' + month + '-' + year
 }
-
 export const getDates = (startDate, daysToAdd = 7) => {
+  var todayDate = moment();
   var aryDates = []
-
   for (var i = 0; i <= daysToAdd; i++) {
     var currentDate = new Date()
     currentDate.setDate(startDate.getDate() + i)
-    aryDates.push(
-      DayAsString(currentDate.getDay()) + ', ' + currentDate.getDate()
-      // +
-      // ' ' +
-      // MonthAsString(currentDate.getMonth()) +
-      // ' ' +
-      // currentDate.getFullYear()
-    )
+    let label = `${DayAsString(currentDate.getDay())}, ${currentDate.getDate()}`
+    let value = todayDate.add(1, 'days').format("DD-MM-YYYY");
+    let data = { label, value }
+    aryDates.push(data)
   }
-
   return aryDates
 }
 
