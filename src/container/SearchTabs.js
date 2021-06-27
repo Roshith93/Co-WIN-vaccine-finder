@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import {  useContext, useEffect } from 'react'
 import SwipeableViews from 'react-swipeable-views'
 import { useTheme } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -14,15 +14,25 @@ import { useStyles } from '../utils/styles'
 import { CowinContext } from '../context/CowinContext'
 
 export default function FullWidthTabs(props) {
-  const { currentWeek, isVaccineSlotsAvailable , setFormattedDate} = useContext(CowinContext)
+  const {
+    currentWeek,
+    isVaccineSlotsAvailable,
+    setFormattedDate,
+    tabIndex,
+    setTabIndex,
+  } = useContext(CowinContext)
   const classes = useStyles()
   const theme = useTheme()
-  const [value, setValue] = useState(0)
-
+  useEffect(() => {
+    setTabIndex(0)
+  }, [isVaccineSlotsAvailable])
   const handleChange = (event, newValue) => {
+    setTabIndex(newValue)
+    if (isVaccineSlotsAvailable) {
+      setFormattedDate(currentWeek[newValue].value)
+    }
+    console.log('currentweek', currentWeek)
     console.log('tabchange', event.target.value, newValue)
-    setValue(newValue)
-    setFormattedDate(currentWeek[newValue].value)
     console.log('currentWeek', currentWeek[newValue].value)
   }
 
@@ -42,7 +52,7 @@ export default function FullWidthTabs(props) {
     <div className={classes.searchTabRoot}>
       <AppBar position='static' color='default'>
         <Tabs
-          value={value}
+          value={tabIndex}
           onChange={handleChange}
           indicatorColor='primary'
           textColor='primary'
@@ -58,11 +68,11 @@ export default function FullWidthTabs(props) {
       </AppBar>
       <SwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
-        index={value}
+        index={tabIndex}
       >
         {tabContents.map((el, idx) => {
           return (
-            <TabPanel value={value} index={idx} dir={theme.direction}>
+            <TabPanel value={tabIndex} index={idx} dir={theme.direction}>
               {el}
             </TabPanel>
           )

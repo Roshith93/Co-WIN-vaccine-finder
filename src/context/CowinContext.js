@@ -9,6 +9,7 @@ const GET_STATES = '/v2/admin/location/states'
 const GET_DISTRICTS = '/v2/admin/location/districts'
 const FIND_BY_PINCODE = '/v2/appointment/sessions/public/findByPin'
 const FIND_BY_DISTRICT_ID = '/v2/appointment/sessions/public/findByDistrict'
+// let formattedDate = getFormattedDate(new Date())
 console.log(process.env.NODE_ENV)
 console.log(process.env.REACT_APP_BASE_URL)
 // const recentSearch = {
@@ -57,12 +58,15 @@ export const CowinProvider = ({ children }) => {
   const [dosageType, setDosageType] = useState('Dose1')
   const [ageGroup, setAgeGroup] = useState({ age18: false, age45: false })
   const [currentWeek] = useState(getDates(new Date(), 7))
-  const [formattedDate, setFormattedDate] = useState(
-    getFormattedDate(new Date())
-  )
+
   const [isVaccineSlotsAvailable, setIsVaccineSlotsAvailable] = useState(false)
   const [districtCall, setDistrictCall] = useState(null)
   const [pincodeCall, setPincodeCall] = useState(null)
+  const [tabIndex, setTabIndex] = useState(0)
+  const [formattedDate, setFormattedDate] = useState(
+    getFormattedDate(new Date())
+  )
+  console.log('formattedDate', formattedDate)
   useEffect(
     () =>
       getStates()
@@ -90,7 +94,7 @@ export const CowinProvider = ({ children }) => {
           console.error(err)
         })
     }
-  }, [districtCall, formattedDate])
+  }, [districtCall, tabIndex])
   useEffect(() => {
     if (districtId !== null) {
       getVaccinesByDistricts(districtId, formattedDate)
@@ -101,7 +105,7 @@ export const CowinProvider = ({ children }) => {
         })
         .catch((err) => console.error(err))
     }
-  }, [pincodeCall, formattedDate])
+  }, [pincodeCall, tabIndex])
   return (
     <CowinContext.Provider
       value={{
@@ -126,12 +130,14 @@ export const CowinProvider = ({ children }) => {
         setIsVaccineSlotsAvailable,
         pincode,
         setPincode,
-        formattedDate,
-        setFormattedDate,
         districtCall,
         setDistrictCall,
         pincodeCall,
         setPincodeCall,
+        tabIndex,
+        setTabIndex,
+        formattedDate,
+        setFormattedDate,
       }}
     >
       {children}

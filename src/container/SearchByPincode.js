@@ -10,6 +10,7 @@ import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
 import { useStyles } from '../utils/styles'
+import { getFormattedDate } from '../utils/data'
 
 const initialValues = {
   pincode: '',
@@ -28,13 +29,11 @@ export const SearchByPincode = ({ calledBy }) => {
     setSessions,
     setIsVaccineSlotsAvailable,
     setPincode,
-    formattedDate,
-    pincodeCall,
-    setPincodeCall,
   } = useContext(CowinContext)
   const onSubmit = async (values, actions) => {
     const { pincode } = values
     setPincode(pincode)
+    let formattedDate = getFormattedDate(new Date())
 
     await getVaccinesByPin(pincode, formattedDate)
       .then((res) => {

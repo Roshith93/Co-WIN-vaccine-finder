@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Button from '@material-ui/core/Button'
@@ -12,7 +12,7 @@ import Badge from '@material-ui/core/Badge'
 import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 
 import { CowinContext } from '../context/CowinContext'
-import {useStyles} from '../utils/styles'
+import { useStyles } from '../utils/styles'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -83,7 +83,9 @@ export const VaccineSlots = () => {
                         <span className={classes.vaccine}>{vaccine} </span>
                         <span
                           className={`${
-                            !available_capacity === 0 ? classes.slot: classes.vaccine
+                            !available_capacity === 0
+                              ? classes.slot
+                              : classes.vaccine
                           }`}
                         >
                           - {fee_type}

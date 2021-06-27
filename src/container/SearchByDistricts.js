@@ -11,6 +11,7 @@ import { SearchButton } from '../components/SearchButton'
 import { OptionalSection } from './OptionalSection'
 import { CowinContext } from '../context/CowinContext'
 import { useStyles } from '../utils/styles'
+import { getFormattedDate } from '../utils/data'
 
 const initialValues = {
   state: '',
@@ -33,13 +34,11 @@ export const SearchByDistricts = ({ calledBy }) => {
     getVaccinesByDistricts,
     setSessions,
     setIsVaccineSlotsAvailable,
-    formattedDate,
-    districtCall,
-    setDistrictCall,
   } = useContext(CowinContext)
   const classes = useStyles()
-  const onSubmit = (values, actions) => {
-    getVaccinesByDistricts(districtId, formattedDate)
+  const onSubmit = async (values, actions) => {
+    let formattedDate = getFormattedDate(new Date())
+    await getVaccinesByDistricts(districtId, formattedDate)
       .then((res) => {
         setSessions(res)
         actions.setSubmitting(false)
