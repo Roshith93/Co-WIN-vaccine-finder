@@ -1,10 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormLabel from '@material-ui/core/FormLabel';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import Switch from '@material-ui/core/Switch';
 import SpeedDial from '@material-ui/lab/SpeedDial';
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon';
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction';
@@ -52,15 +47,9 @@ const actions = [
 
 export default function SpeedDials(props) {
   const classes = useStyles();
-  const [direction, setDirection] = React.useState('up');
+  const [direction] = React.useState('up');
   const [open, setOpen] = React.useState(false);
   const [hidden, setHidden] = React.useState(false);
-
- 
-
-  const handleHiddenChange = (event) => {
-    setHidden(event.target.checked);
-  };
 
   const handleClose = () => {
     setOpen(false);
