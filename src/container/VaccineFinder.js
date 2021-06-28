@@ -20,10 +20,10 @@ export const VaccineFinder = (props) => {
   return (
     <Container maxWidth='md' className={classes.homeContainer}>
       <ThemeProvider theme={theme}>
-        <Typography variant='h4' style={{ textAlign: 'center', paddingBottom:'2px' }}>
+        {/* <Typography variant='h4' style={{ textAlign: 'center', paddingBottom:'2px' }}>
           {' '}
           Find Vaccines near you
-        </Typography>
+        </Typography> */}
       </ThemeProvider>
       <Paper elevation={3} className={classes.paperRoot}>
         <SearchTabs {...props} />

@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'grid',
     placeItems: 'center',
     fontSize:10,
-    backgroundColor:'#74bbfb'
+    backgroundColor:'#FAD02C'
   },
 }))
 
