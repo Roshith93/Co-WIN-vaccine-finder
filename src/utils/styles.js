@@ -15,6 +15,15 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontWeight: 'bolder',
   },
+  headingStyle:{
+    fontSize: 16,
+    fontWeight: 'bolder',
+    color:'red',
+    [theme.breakpoints.up('md')]: {
+      fontSize: 16,
+      fontWeight: 'normal',
+    },
+  },
   homeContainer: {
     margin: 5,
     padding: 5,

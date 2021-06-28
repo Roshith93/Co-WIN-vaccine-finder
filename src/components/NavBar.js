@@ -20,7 +20,7 @@ export const NavBar = ({ title }) => {
           >
             <MenuIcon />
           </IconButton>
-            <Typography variant='h4' className={classes.title}>
+            <Typography variant='h5' className={classes.title}>
               {title}
             </Typography>
         </Toolbar>

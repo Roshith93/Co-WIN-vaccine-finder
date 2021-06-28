@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect, useCallback } from 'react'
 
 import { API } from '../services/axios'
 import { getDates, getFormattedDate } from '../utils/data'
@@ -25,29 +25,7 @@ console.log(process.env.REACT_APP_BASE_URL)
 //     dose_type: [{ id: 'dose1', label: 'Dose 1' }],
 //   },
 // }
-const getStates = async () => {
-  const response = await API.get(GET_STATES)
-  return response.data.states
-}
 
-const getDistricts = async (stateId) => {
-  const response = await API.get(`${GET_DISTRICTS}/${stateId}`)
-  return response.data.districts
-}
-
-const getVaccinesByPin = async (pincode, searchDate) => {
-  const response = await API.get(
-    `${FIND_BY_PINCODE}?pincode=${pincode}&date=${searchDate}`
-  )
-  return response.data.sessions
-}
-
-const getVaccinesByDistricts = async (districtId, searchDate) => {
-  const response = await API.get(
-    `${FIND_BY_DISTRICT_ID}?district_id=${districtId}&date=${searchDate}`
-  )
-  return response.data.sessions
-}
 export const CowinProvider = ({ children }) => {
   const [sessions, setSessions] = useState([])
   const [states, setStates] = useState([])
@@ -67,6 +45,30 @@ export const CowinProvider = ({ children }) => {
     getFormattedDate(new Date())
   )
   console.log('formattedDate', formattedDate)
+
+  const getStates = async () => {
+    const response = await API.get(GET_STATES)
+    return response.data.states
+  }
+
+  const getDistricts = async (stateId) => {
+    const response = await API.get(`${GET_DISTRICTS}/${stateId}`)
+    return response.data.districts
+  }
+
+  const getVaccinesByPin = useCallback(async (pincode, searchDate) => {
+    const response = await API.get(
+      `${FIND_BY_PINCODE}?pincode=${pincode}&date=${searchDate}`
+    )
+    return response.data.sessions
+  }, [])
+  const getVaccinesByDistricts = useCallback(async (districtId, searchDate) => {
+    const response = await API.get(
+      `${FIND_BY_DISTRICT_ID}?district_id=${districtId}&date=${searchDate}`
+    )
+    return response.data.sessions
+  }, [])
+
   useEffect(
     () =>
       getStates()
