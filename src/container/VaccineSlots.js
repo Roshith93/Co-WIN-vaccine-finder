@@ -39,6 +39,7 @@ export const VaccineSlots = () => {
                 address,
                 min_age_limit,
                 vaccine,
+                fee,
                 fee_type,
                 available_capacity,
                 // fee,
@@ -88,7 +89,7 @@ export const VaccineSlots = () => {
                               : classes.vaccine
                           }`}
                         >
-                          - {fee_type}
+                          - {`${fee_type}`}&#x20B9;
                         </span>
                       </Typography>
                       <Typography>
