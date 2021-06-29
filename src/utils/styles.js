@@ -74,6 +74,15 @@ export const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     color: theme.palette.text.secondary,
   },
+  chipFilter:{
+    display: 'flex',
+    justifyContent: 'center',
+    marginBottom: 5,
+    flexWrap: 'wrap',
+    '& > *': {
+      margin: theme.spacing(0.5),
+    },
+  }
 }))
 
 

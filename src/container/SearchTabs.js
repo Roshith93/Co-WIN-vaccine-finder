@@ -7,6 +7,7 @@ import Tab from '@material-ui/core/Tab'
 
 import { a11yProps } from '../components/SearchTabs/AllYProp'
 import { TabPanel } from '../components/SearchTabs/TabPanel'
+import ChipFilter from '../components/ChipFilter'
 import { SearchByPincode } from './SearchByPincode'
 import { SearchByDistricts } from './SearchByDistricts'
 import { VaccineSlots } from './VaccineSlots'
@@ -50,6 +51,7 @@ export default function FullWidthTabs(props) {
   console.log('tabContentssss', tabContents)
   return (
     <div className={classes.searchTabRoot}>
+      <ChipFilter/>
       <AppBar position='static' color='default'>
         <Tabs
           value={tabIndex}
