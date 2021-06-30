@@ -69,6 +69,22 @@ export const CowinProvider = ({ children }) => {
     return response.data.sessions
   }, [])
 
+  const resetState = () => {
+    setSessions([])
+    setStates([])
+    setDistricts([])
+    setStateId(null)
+    setDistrictId(null)
+    setPincode(null)
+    setDosageType('Dose1')
+    setIsVaccineSlotsAvailable(false)
+    setDistrictCall(null)
+    setPincodeCall(null)
+    setTabIndex(0)
+    setFormattedDate(getFormattedDate(new Date()))
+    console.log(ageGroup)
+  }
+
   useEffect(
     () =>
       getStates()
@@ -140,6 +156,7 @@ export const CowinProvider = ({ children }) => {
         setTabIndex,
         formattedDate,
         setFormattedDate,
+        resetState,
       }}
     >
       {children}

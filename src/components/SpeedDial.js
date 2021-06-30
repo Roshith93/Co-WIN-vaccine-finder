@@ -16,13 +16,15 @@ const actions = [
 ]
 
 export default function SpeedDials(props) {
-  const { isVaccineSlotsAvailable } = useContext(CowinContext)
+  const { isVaccineSlotsAvailable, resetState } = useContext(CowinContext)
   const classes = useStyles()
   const [direction] = React.useState('up')
   const [open, setOpen] = React.useState(false)
   const [hidden, setHidden] = React.useState(false)
 
-  const handleClose = () => {
+  const handleClose = (val) => {
+    if(val === 'Reset') return resetState()
+    console.log(val)
     setOpen(false)
   }
 
@@ -55,7 +57,7 @@ export default function SpeedDials(props) {
                 key={action.name}
                 icon={action.icon}
                 tooltipTitle={action.name}
-                onClick={handleClose}
+                onClick={() => handleClose(action.name)}
                 tooltipOpen
               />
             ))}
