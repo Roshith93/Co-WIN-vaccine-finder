@@ -13,6 +13,7 @@ import EventAvailableIcon from '@material-ui/icons/EventAvailable'
 
 import { CowinContext } from '../context/CowinContext'
 import { useStyles } from '../utils/styles'
+import { FilterModal } from '../components/FilterModal'
 
 const StyledBadge = withStyles((theme) => ({
   badge: {
@@ -133,6 +134,7 @@ export const VaccineSlots = () => {
             })
           : 'No data available'}
       </Grid>
+      <FilterModal />
     </div>
   )
 }

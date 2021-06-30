@@ -44,6 +44,7 @@ export const CowinProvider = ({ children }) => {
   const [formattedDate, setFormattedDate] = useState(
     getFormattedDate(new Date())
   )
+  const [filterModalOpen, setFilterModalOpen] = useState(false)
   console.log('formattedDate', formattedDate)
 
   const getStates = async () => {
@@ -157,6 +158,8 @@ export const CowinProvider = ({ children }) => {
         formattedDate,
         setFormattedDate,
         resetState,
+        filterModalOpen,
+        setFilterModalOpen,
       }}
     >
       {children}
