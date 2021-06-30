@@ -28,7 +28,13 @@ export const VaccineSlots = () => {
   const classes = useStyles()
   const sortSessions =
     sessions &&
-    sessions.sort((a, b) => a.available_capacity < b.available_capacity ? -1 : (a.available_capacity > b.available_capacity ? 1 : 0))
+    sessions.sort((a, b) =>
+      parseFloat(a.available_capacity) > parseFloat(b.available_capacity)
+        ? -1
+        : parseFloat(a.available_capacity) < parseFloat(b.available_capacity)
+        ? 1
+        : 0
+    )
   return (
     <div className={classes.slotRoot}>
       <Grid container spacing={3}>
