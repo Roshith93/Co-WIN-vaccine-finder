@@ -82,7 +82,29 @@ export const useStyles = makeStyles((theme) => ({
     '& > *': {
       margin: theme.spacing(0.5),
     },
-  }
+  },
+  speedDialRoot: {
+    transform: 'translateZ(0px)',
+    flexGrow: 1,
+  },
+  speedDialExampleWrapper: {
+    position: 'sticky',
+    marginTop: theme.spacing(3),
+    bottom: 5,
+    right: 5,
+    // height: 380,
+  },
+  speedDial: {
+    position: 'absolute',
+    '&.MuiSpeedDial-directionUp, &.MuiSpeedDial-directionLeft': {
+      bottom: theme.spacing(2),
+      right: theme.spacing(2),
+    },
+    '&.MuiSpeedDial-directionDown, &.MuiSpeedDial-directionRight': {
+      top: theme.spacing(2),
+      left: theme.spacing(2),
+    },
+  },
 }))
 
 
