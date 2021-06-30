@@ -1,23 +1,18 @@
 import React, { useContext } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
 import SpeedDial from '@material-ui/lab/SpeedDial'
 import SpeedDialIcon from '@material-ui/lab/SpeedDialIcon'
 import SpeedDialAction from '@material-ui/lab/SpeedDialAction'
-import FileCopyIcon from '@material-ui/icons/FileCopyOutlined'
-import SaveIcon from '@material-ui/icons/Save'
-import PrintIcon from '@material-ui/icons/Print'
-import ShareIcon from '@material-ui/icons/Share'
-import FavoriteIcon from '@material-ui/icons/Favorite'
+import HomeIcon from '@material-ui/icons/Home'
+import ClearIcon from '@material-ui/icons/Clear'
+import SortIcon from '@material-ui/icons/Sort'
 
 import { CowinContext } from '../context/CowinContext'
-import {useStyles} from '../utils/styles'
+import { useStyles } from '../utils/styles'
 
 const actions = [
-  { icon: <FileCopyIcon />, name: 'Copy' },
-  { icon: <SaveIcon />, name: 'Save' },
-  { icon: <PrintIcon />, name: 'Print' },
-  { icon: <ShareIcon />, name: 'Share' },
-  { icon: <FavoriteIcon />, name: 'Like' },
+  { icon: <HomeIcon />, name: 'Home' },
+  { icon: <ClearIcon />, name: 'Reset' },
+  { icon: <SortIcon />, name: 'Filter' },
 ]
 
 export default function SpeedDials(props) {
@@ -61,6 +56,7 @@ export default function SpeedDials(props) {
                 icon={action.icon}
                 tooltipTitle={action.name}
                 onClick={handleClose}
+                tooltipOpen
               />
             ))}
           </SpeedDial>
