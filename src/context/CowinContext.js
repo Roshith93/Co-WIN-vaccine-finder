@@ -72,7 +72,6 @@ export const CowinProvider = ({ children }) => {
 
   const resetState = () => {
     setSessions([])
-    setStates([])
     setDistricts([])
     setStateId(null)
     setDistrictId(null)
